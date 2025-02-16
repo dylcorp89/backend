@@ -14,7 +14,7 @@
    cd backend
    
 2. **Configurer la base de données**  
-   ```Modifier application.properties :
+   ```sh Modifier application.properties :
 spring.datasource.url=jdbc:mysql://localhost:3306/ma_base
 spring.datasource.username=root
 spring.datasource.password=secret
@@ -22,14 +22,11 @@ spring.datasource.password=secret
  3. **Lancer l'application**  
    ```sh
    mvn spring-boot:run
+   cd backend
 
 
-🔑 Authentification JWT
-Login : POST /auth/login
-Register : POST /auth/register
-Accès sécurisé : Ajouter Authorization: Bearer <token> dans les requêtes.
 
-📌 Fonctionnalités principales
+## 📌 Fonctionnalités principales
 ✔️ CRUD utilisateurs
 ✔️ Gestion des rôles et permissions
 ✔️ Système de rate limiting
@@ -37,6 +34,10 @@ Accès sécurisé : Ajouter Authorization: Bearer <token> dans les requêtes.
 ✔️ Souscription à produit d'assurance
 ✔️ Etablissement attestion 
 
+🔑 Authentification JWT
+Login : POST /auth/login
+Register : POST /auth/register
+Accès sécurisé : Ajouter Authorization: Bearer <token> dans les requêtes.
 
 🛠️ Choix techniques
 Spring Boot : Pour sa robustesse et son écosystème mature.
