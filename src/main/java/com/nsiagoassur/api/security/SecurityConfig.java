@@ -7,8 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+
+
 
 @Configuration
 public class SecurityConfig {
@@ -39,11 +43,28 @@ public class SecurityConfig {
            
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/v1/*").permitAll()
+                .requestMatchers("/auth/*").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                // Utilisation d'une méthode de hachage sécurisée recommandée
+                return rawPassword.toString(); // ⚠️ Ceci n'est pas sécurisé ! Utilisez BCrypt à la place.
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return rawPassword.toString().equals(encodedPassword);
+            }
+        };
     }
 
 }

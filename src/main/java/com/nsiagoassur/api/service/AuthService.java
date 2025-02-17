@@ -5,6 +5,8 @@ import com.nsiagoassur.api.repository.UtilisateurRepository;
 import com.nsiagoassur.api.security.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +18,12 @@ import java.util.Optional;
 @RequiredArgsConstructor
 
 public class AuthService  {
-
+    
+    @Autowired
     private final UtilisateurRepository utilisateurRepository = null;
     private final JwtUtil jwtUtil = new JwtUtil();
+
+    @Autowired
     private final PasswordEncoder passwordEncoder = null;
 
     @Transactional
