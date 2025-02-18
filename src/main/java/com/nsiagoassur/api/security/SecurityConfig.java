@@ -26,14 +26,14 @@ public class SecurityConfig {
 
 
 
- @Bean
-    public FilterRegistrationBean<JwtFilter> jwtFilterRegistration(JwtFilter jwtFilter) {
-        FilterRegistrationBean<JwtFilter> registrationBean = new FilterRegistrationBean<>();
-        registrationBean.setFilter(jwtFilter);
-        registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE); // ou un autre ordre souhaité
-        registrationBean.addUrlPatterns("/api/v1/*"); // ou spécifiez les URL à filtrer
-        return registrationBean;
-    }
+//  @Bean
+//     public FilterRegistrationBean<JwtFilter> jwtFilterRegistration(JwtFilter jwtFilter) {
+//         FilterRegistrationBean<JwtFilter> registrationBean = new FilterRegistrationBean<>();
+//         registrationBean.setFilter(jwtFilter);
+//         registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE); // ou un autre ordre souhaité
+//         registrationBean.addUrlPatterns("/api/v1/**"); // ou spécifiez les URL à filtrer
+//         return registrationBean;
+//     }
     
 
     @Bean
@@ -42,7 +42,8 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
            
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/v1/*").permitAll()
+                .requestMatchers("/api/v1/**").permitAll()
+                //.requestMatchers("/api-docs").permitAll()
                 .requestMatchers("/auth/*").permitAll()
                 .anyRequest().authenticated()
             )

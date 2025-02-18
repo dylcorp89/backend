@@ -5,6 +5,10 @@ import com.nsiagoassur.api.model.Subscription;
 import com.nsiagoassur.api.repository.SimulationRepository;
 import com.nsiagoassur.api.repository.SubscriptionRepository;
 import com.nsiagoassur.api.security.JwtUtil;
+
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -12,16 +16,17 @@ import java.util.Optional;
 
 
 @Service
+//@RequiredArgsConstructor
 
 public class SubscriptionService {
 
-    private final SubscriptionRepository subscriptionRepository;
-    private final JwtUtil jwtUtil;
+	@Autowired
+    private SubscriptionRepository subscriptionRepository;
+    
+	
+	private  JwtUtil jwtUtil;
 
-    public SubscriptionService(SubscriptionRepository subscriptionRepository, JwtUtil jwtUtil) {
-        this.subscriptionRepository = subscriptionRepository;
-        this.jwtUtil = jwtUtil;
-    }
+   
 
     public Subscription createSubscription(Subscription subscription) {
         return subscriptionRepository.save(subscription);

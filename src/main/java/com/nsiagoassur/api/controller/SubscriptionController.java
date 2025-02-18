@@ -1,5 +1,6 @@
 package com.nsiagoassur.api.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,10 +20,13 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/subscriptions")
+
 @RequiredArgsConstructor
 @Tag(name = "Souscription", description = "Endpoints pour la souscription")
 public class SubscriptionController {
-    private final SubscriptionService subscriptionService = null;
+
+	@Autowired
+    private  SubscriptionService subscriptionService ;
 
     @PostMapping
     @Operation(summary = "Creation d'une souscription", description = "Permet de créer une souscription")

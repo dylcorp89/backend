@@ -19,12 +19,12 @@ import java.util.Optional;
 
 public class AuthService  {
     
-    @Autowired
-    private final UtilisateurRepository utilisateurRepository = null;
-    private final JwtUtil jwtUtil = new JwtUtil();
+	  @Autowired
+	    private final UtilisateurRepository utilisateurRepository = null;
+	    private final JwtUtil jwtUtil = new JwtUtil();
 
-    @Autowired
-    private final PasswordEncoder passwordEncoder = null;
+	    @Autowired
+	    private final PasswordEncoder passwordEncoder = null;
 
     @Transactional
     public String register(String login, String password) {

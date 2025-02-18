@@ -7,8 +7,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "subscription")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Subscription {
@@ -24,7 +23,5 @@ public class Subscription {
     @JoinColumn(name = "id_assure")
     private Assure assure;
 
-    public String  getStatus() {
-        return this.status; // ⚠️ Risqué si le hash est exposé dans les logs ou l’API
-    }
+    
 }

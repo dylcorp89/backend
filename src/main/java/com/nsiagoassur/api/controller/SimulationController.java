@@ -15,7 +15,7 @@ import com.nsiagoassur.api.model.Subscription;
 import com.nsiagoassur.api.service.AttestationService;
 import com.nsiagoassur.api.service.SimulationService;
 import com.nsiagoassur.api.service.SubscriptionService;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,23 +25,27 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/api/v1/simulations")
 @RequiredArgsConstructor
+
 @Tag(name = "Simulation", description = "Endpoints pour la simulation d'un produit")
 public class SimulationController {
 
-    private final SimulationService simulationService = null;
-    private final AttestationService attestationService = new AttestationService();
-    private final SubscriptionService subscriptionService = null;
+    @Autowired
+    private SimulationService simulationService ;
+    @Autowired
+    private  AttestationService attestationService ;
+    @Autowired
+    private  SubscriptionService subscriptionService;
 
-    
+
     @GetMapping
-    
     public List<Simulation> getAllSimulations() {
         return simulationService.getAllSimulations();
     }
 
-    @PostMapping
+    @PostMapping("/create")
     @Operation(summary = "Creation d'une simulation", description = "Permet de créer une simulation")
     @ApiResponse(responseCode = "200", description = "Simulation créee avec succès")
+    
     public Simulation createSimulation(@RequestBody Simulation simulation) {
         return simulationService.createSimulation(simulation);
     }
@@ -59,6 +63,7 @@ public class SimulationController {
     @Operation(summary = "Recuperation d'une attestation", description = "Permet de recupérer une attestation")
     @ApiResponse(responseCode = "200", description = "Attestion recupérée avec succès")
     @ApiResponse(responseCode = "401", description = "Attestion non trouvée")
+    @ApiResponse(responseCode = "404", description = "Ressource non trouvée")
 public ResponseEntity<Resource> getAttestation(@PathVariable Integer id) {
     Optional<Subscription> subscriptionOpt = subscriptionService.getSubscriptionById(id);
 

@@ -2,10 +2,13 @@ package com.nsiagoassur.api.controller;
 
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 import com.nsiagoassur.api.service.AuthService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +18,14 @@ import java.util.Map;
 @RequestMapping("/auth")
 @Tag(name = "Authentification", description = "Endpoints pour l'authentification des utilisateurs")
 
+@RequiredArgsConstructor
 public class AuthController {
-    private final AuthService authService;
+	
+	 private final AuthService authService;
 
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+	    public AuthController(AuthService authService) {
+	        this.authService = authService;
+	    }
 
     @PostMapping("/register")
     @Operation(summary = "Inscription d'un utilisateur", description = "Permet de créer un compte utilisateur")

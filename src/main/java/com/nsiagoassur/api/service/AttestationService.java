@@ -15,6 +15,7 @@ import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 public class AttestationService {
@@ -38,22 +39,43 @@ public class AttestationService {
                 contentStream.showText("Attestation d'Abonnement");
                 contentStream.endText();
 
-                // 🔹 Ajouter une bordure
-                contentStream.setStrokingColor(Color.BLACK);
-                contentStream.setLineWidth(2);
-                contentStream.addRect(40, 700, 500, 100);
-                contentStream.stroke();
-
-                // 🔹 Détails de l’abonnement
+                // 🔹 Numéro unique de l'attestation
+                String numeroAttestation = UUID.randomUUID().toString();
                 contentStream.setFont(PDType1Font.HELVETICA, 14);
                 contentStream.beginText();
-                contentStream.newLineAtOffset(60, 730);
-                contentStream.showText("Numéro d'abonnement : " );
-                contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Email : " );
-                contentStream.newLineAtOffset(0, -20);
+                contentStream.newLineAtOffset(60, 700);
+                contentStream.showText("Numéro unique : " + numeroAttestation);
+                contentStream.endText();
+
+                // 🔹 Informations du véhicule assuré
+                contentStream.beginText();
+                contentStream.newLineAtOffset(60, 670);
+                contentStream.showText("Véhicule : " + "" + 
+                                      " - " + "");
+                contentStream.endText();
+
+                // 🔹 Informations du souscripteur
+                contentStream.beginText();
+                contentStream.newLineAtOffset(60, 640);
+                contentStream.showText("Souscripteur : " + "" + 
+                                      " - " + "");
+                contentStream.endText();
+
+                // 🔹 Nom du Produit souscrit
+                contentStream.beginText();
+                contentStream.newLineAtOffset(60, 610);
+                contentStream.showText("Produit souscrit : " + "");
+                contentStream.endText();
+
+                // 🔹 Date de génération
+                contentStream.beginText();
+                contentStream.newLineAtOffset(60, 580);
                 contentStream.showText("Date de génération : " + LocalDateTime.now());
                 contentStream.endText();
+
+                // 🔹 QR Code
+               /* PDImageXObject qrCodeImage = generateQRCodeImage(numeroAttestation);
+                contentStream.drawImage(qrCodeImage, 400, 500, 100, 100);*/
 
                 // 🔹 Ajouter une signature électronique
                 contentStream.setFont(PDType1Font.HELVETICA_OBLIQUE, 12);
@@ -66,7 +88,7 @@ public class AttestationService {
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD_OBLIQUE, 16);
                 contentStream.beginText();
                 contentStream.newLineAtOffset(400, 80);
-                contentStream.showText("John Doe");
+                contentStream.showText("NSIAGO'ASSUR");
                 contentStream.endText();
             }
 
@@ -76,4 +98,9 @@ public class AttestationService {
             return new ByteArrayResource(outputStream.toByteArray());
         }
     }
+
+   /* private PDImageXObject generateQRCodeImage(String data) throws IOException {
+        // Générer un QR Code avec ZXing
+        return PDImageXObject.createFromFile("qrcode.png", new PDDocument()); // Remplace avec la logique de génération réelle
+    }*/
 }

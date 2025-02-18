@@ -8,9 +8,11 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Simulation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Integer idSimulation;
     private String quoteReference;
     private String startDate;
