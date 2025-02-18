@@ -1,4 +1,4 @@
-package com.nsiagoassur.api.service;
+package com.nsiagoassur.api.service ;
 
 import com.nsiagoassur.api.model.Simulation;
 import com.nsiagoassur.api.model.Subscription;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 
 public class SubscriptionService {
 

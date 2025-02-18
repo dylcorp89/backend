@@ -23,5 +23,7 @@ public class Subscription {
     @JoinColumn(name = "id_assure")
     private Assure assure;
 
-    
+    public  String getStatus() {
+    	return this.status;
+    }
 }

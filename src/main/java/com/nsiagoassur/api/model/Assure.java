@@ -1,8 +1,12 @@
 package com.nsiagoassur.api.model;
 
+
+
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Set;
+
 
 
 @Entity
