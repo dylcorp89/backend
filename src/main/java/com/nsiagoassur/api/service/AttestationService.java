@@ -76,36 +76,30 @@ public class AttestationService {
                 // 🔹 Informations du véhicule assuré
                 contentStream.beginText();
                 contentStream.newLineAtOffset(60, 620);
-                contentStream.showText("Véhicule : Numero Immatriculation " + subscription.getVehicule().getNumeroMatricule()
+                contentStream.showText("Véhicule : N° " + subscription.getVehicule().getNumeroMatricule()
                         + " - Couleur : " + subscription.getVehicule().getCouleur()
-                       +" - " + subscription.getVehicule().getNbrPortes() +" Portes " 
+                       +" - " + subscription.getVehicule().getNbrPortes() +" Portes  - " + subscription.getVehicule().getNbrSieges()+" Sièges"
                        );
                 
                 contentStream.endText();
                 
-                contentStream.beginText();
-                contentStream.newLineAtOffset(60, 590);
-                contentStream.showText(
-                         subscription.getVehicule().getNbrSieges()+" Sièges" 
-                        + " Valeur Neuve : " + subscription.getVehicule().getValeurNeuf() + " CFA");
-                
-                contentStream.endText();
+             
                 // 🔹 Informations du souscripteur
                 contentStream.beginText();
-                contentStream.newLineAtOffset(60, 560);
+                contentStream.newLineAtOffset(60, 590);
                 contentStream.showText("Souscripteur : " + subscription.getAssure().getNom() + " " + subscription.getAssure().getPrenoms()
                         + " - " + subscription.getAssure().getTelephone() + " " + subscription.getAssure().getVille());
                 contentStream.endText();
 
                 // 🔹 Nom du Produit souscrit
                 contentStream.beginText();
-                contentStream.newLineAtOffset(60, 530);
+                contentStream.newLineAtOffset(60, 560);
                 contentStream.showText("Produit souscrit : " + subscription.getProduitAssurance().getNomProduit());
                 contentStream.endText();
 
                 // 🔹 Date de génération
                 contentStream.beginText();
-                contentStream.newLineAtOffset(60, 350);
+                contentStream.newLineAtOffset(60, 530);
                 contentStream.showText("Date de génération : " + LocalDateTime.now());
                 contentStream.endText();
 

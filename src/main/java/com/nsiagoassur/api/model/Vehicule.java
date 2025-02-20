@@ -31,6 +31,8 @@ public class Vehicule {
     @EqualsAndHashCode.Exclude
     private Categorie categorie;
 
+	
+
 	public String getCouleur() {
 		return couleur;
 	}
@@ -86,4 +88,13 @@ public class Vehicule {
 	public void setValeurNeuf(Float valeurNeuf) {
 		this.valeurNeuf = valeurNeuf;
 	}
+	
+	public Categorie getCategorie() {
+	    return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+	    this.categorie = categorie;
+	}
+
 }

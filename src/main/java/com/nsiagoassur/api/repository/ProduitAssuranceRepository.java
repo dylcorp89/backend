@@ -11,5 +11,5 @@ import com.nsiagoassur.api.model.ProduitAssurance;
 public interface ProduitAssuranceRepository extends JpaRepository<ProduitAssurance, Integer> {
     Optional<ProduitAssurance> findById(Integer id);
     
-    Optional<ProduitAssurance> findByNomProduit(String nom);
+    Optional<ProduitAssurance> findByNomProduit(String nomProduit);
 }

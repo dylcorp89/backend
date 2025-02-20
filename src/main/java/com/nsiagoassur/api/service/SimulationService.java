@@ -39,13 +39,32 @@ public class SimulationService {
         return simulationRepository.findByQuoteReference(quote);
     }
 
+ // Méthodes utilitaires pour conversion sécurisée
+    private int parseIntOrDefault(String value, int defaultValue) {
+        try {
+            return value != null ? Integer.parseInt(value) : defaultValue;
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
+    private float parseFloatOrDefault(String value, float defaultValue) {
+        try {
+            return value != null ? Float.parseFloat(value) : defaultValue;
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
 
 	public SimulationResponseDTO createSimulation(Map<String, String> request) {
 		// TODO Auto-generated method stub
 		 float resultatPrime = 0.0f;
 		 
+		 
+		 
 		 // generation valeur aleatoire unique de 12 caractere commmencant pat QT
-		   ReferenceGenerator reference =new ReferenceGenerator();
+		   ReferenceGenerator reference =new ReferenceGenerator("QT");
 		
 		   String date_fin = "";
 		   
@@ -57,15 +76,15 @@ public class SimulationService {
 		   
 		   //convertir puissance en en float avant calcul
 		   String valeurNeuf = request.get("valeurNeuf");
-		   Float valeurNeufFloat = Float.parseFloat(valeurNeuf);
+		   Float valeurNeufFloat = parseFloatOrDefault(valeurNeuf,0);
 		   
 		   String valeurVenal = request.get("valeurVenal");
-		   Float valeurVenalFloat = Float.parseFloat(valeurVenal);
+		   Float valeurVenalFloat = parseFloatOrDefault(valeurVenal,0);
 		   
 		   
 		    //convertir puissance en int
 		   String puissance =request.get("puissance");
-		   int puissanceInt = Integer.parseInt(puissance);
+		   int puissanceInt = parseIntOrDefault(puissance,0);
 		   
 		   String dateCirculation = request.get("dateCirculation");
 		   
@@ -131,20 +150,3 @@ public class SimulationService {
 
 
 
- class ReferenceGenerator {
-    private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private static final int LENGTH = 12;
-    private static final SecureRandom random = new SecureRandom();
-
-    public static String generateReference() {
-        StringBuilder ref = new StringBuilder("QT");
-
-        for (int i = 0; i < LENGTH; i++) {
-            int index = random.nextInt(CHARACTERS.length());
-            ref.append(CHARACTERS.charAt(index));
-        }
-
-        return ref.toString();
-    }
-
-}

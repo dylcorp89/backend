@@ -24,7 +24,11 @@ public class Subscription {
     private String status; // Ex: "ACTIVE", "PENDING", "EXPIRED"
     
   
-   
+    
+    
+    public Integer getIdSubscription() {
+		return idSubscription;
+	}
 	public String getQuoteReference() {
 		return quoteReference;
 	}

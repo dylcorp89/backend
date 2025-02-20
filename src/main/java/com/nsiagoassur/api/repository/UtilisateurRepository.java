@@ -1,8 +1,9 @@
 package com.nsiagoassur.api.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.nsiagoassur.api.model.Utilisateur;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 

@@ -9,10 +9,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.nsiagoassur.api.model.Subscription;
+import com.nsiagoassur.api.model.Vehicule;
 
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Integer> {
-    List<Subscription> findByQuoteReference(String quoteReference);
+  
+	Optional<Subscription> findByQuoteReference(String quoteReference);
    
     @Query("SELECT s FROM Subscription s WHERE s.startDate <= :date AND s.endDate >= :date")
     
