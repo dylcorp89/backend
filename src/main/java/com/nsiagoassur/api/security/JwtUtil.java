@@ -12,11 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(1)
 public class JwtUtil {
-    // @Value("${app.secret-key}")
-    // private String SECRET_KEY ;
 
-    // @Value("${app.secret-key}")
-    // private long EXPIRATION_TIME ;
 
    private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
    private static final long EXPIRATION_TIME = 86400000; // 24 heures

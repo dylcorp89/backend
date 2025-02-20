@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public interface AssureRepository extends JpaRepository<Assure, Integer> {
+	
     List<Assure> findByVille(String ville);
+    
     Optional<Assure> findByNumeroCarteIdentite(String numeroCarteIdentite);
+    
+    Optional<Assure> findByTelephone(String telephone);
 }

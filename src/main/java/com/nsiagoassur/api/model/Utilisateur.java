@@ -3,6 +3,7 @@ package com.nsiagoassur.api.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,6 +18,7 @@ public class Utilisateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUtilisateur;
 
+    
     private String nom;
     private String prenoms;
 
@@ -51,4 +53,28 @@ public class Utilisateur {
     public String getPassword() {
         return this.password; //  risqué
     }
+
+    public void setRole(Role role) {
+        if (this.roles == null) {
+            this.roles = new HashSet<>();
+        }
+        this.roles.add(role);
+    }
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenoms() {
+		return prenoms;
+	}
+
+	public void setPrenoms(String prenoms) {
+		this.prenoms = prenoms;
+	}
+
 }

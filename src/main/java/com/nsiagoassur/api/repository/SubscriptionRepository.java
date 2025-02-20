@@ -12,7 +12,7 @@ import com.nsiagoassur.api.model.Subscription;
 
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Integer> {
-    List<Subscription> findByAssure_IdAssure(Integer idAssure);
+    List<Subscription> findByQuoteReference(String quoteReference);
    
     @Query("SELECT s FROM Subscription s WHERE s.startDate <= :date AND s.endDate >= :date")
     

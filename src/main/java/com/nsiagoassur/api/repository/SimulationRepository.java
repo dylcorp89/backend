@@ -6,11 +6,13 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.nsiagoassur.api.model.Attestation;
 import com.nsiagoassur.api.model.Simulation;
 
 
 @Repository
 public interface SimulationRepository extends JpaRepository<Simulation, Integer> {
-    List<Simulation> findByAssure_IdAssure(Integer idAssure);
+       
+    Optional<Simulation> findByQuoteReference(String quoteReference);
 }
 

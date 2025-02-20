@@ -12,8 +12,17 @@ public class ProduitAssurance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idProduitAssurance;
+    private String nomProduit;
     
-    @ManyToOne
-    @JoinColumn(name = "assure_id")
-    private Assure assure;
+    
+    
+  public String getNomProduit() {
+		return nomProduit;
+	}
+
+
+
+	public void setNomProduit(String nomProduit) {
+		this.nomProduit = nomProduit;
+	}
 }
