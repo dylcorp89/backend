@@ -20,6 +20,7 @@
    spring.datasource.url=jdbc:mysql://localhost:3306/ma_base
    spring.datasource.username=root
    spring.datasource.password=secret
+   server.port=8081
    ```
 
 3. **Lancer l'application**  
@@ -28,10 +29,11 @@
    ```
 
 ## 📌 Fonctionnalités principales
+
 ✔️ CRUD utilisateurs  
 ✔️ Gestion des rôles et permissions  
 ✔️ Système de rate limiting  
-✔️ Simulation  
+✔️ Simulation de prime 
 ✔️ Souscription à un produit d'assurance  
 ✔️ Établissement d'attestation  
 
