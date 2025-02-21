@@ -1,6 +1,7 @@
 package com.nsiagoassur.api.controller;
 
 
+import com.nsiagoassur.api.model.Utilisateur;
 import com.nsiagoassur.api.service.AuthService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -52,5 +54,12 @@ public class AuthController {
     	
     	Map<String, String> token = authService.login(request.get("username"), request.get("password"));
         return token;
+    }
+    
+    @GetMapping("/liste")
+    @Operation(summary = "Liste des utilisateurs", description = "Récupère la liste des utilisateurs")
+    @ApiResponse(responseCode = "200", description = "Liste des utilisateurs récupérée avec succès")
+    public List<Utilisateur> getUsersList() {
+        return  authService.findAll();
     }
 }

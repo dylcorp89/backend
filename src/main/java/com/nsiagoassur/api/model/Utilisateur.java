@@ -64,6 +64,10 @@ public class Utilisateur {
 	public String getNom() {
 		return nom;
 	}
+	
+	public Integer getIdUtilisateur() {
+		return idUtilisateur;
+	}
 
 	public void setNom(String nom) {
 		this.nom = nom;
