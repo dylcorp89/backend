@@ -31,7 +31,7 @@
    ```sh
    mysql -u root -p (Entre ton mot de passe MySQL lorsque demandé)
    
-   CREATE DATABASE ma_base;
+   CREATE DATABASE ma_base
    ```
    
 3. **Lancer l'application**  
