@@ -57,18 +57,35 @@ public class AuthService  {
         utilisateur.setRole(defaultRole);;
         utilisateurRepository.save(utilisateur);
 
-       return jwtUtil.generateToken(login);
+       return jwtUtil.generateToken(login,nom,prenoms,role);
     }
 
     public Map<String, String> login(String login, String password) {
-    	  Optional<Utilisateur> utilisateur = utilisateurRepository.findByLogin(login);
-
-          if (utilisateur.isEmpty() || !passwordEncoder.matches(password, utilisateur.get().getPassword())) {
+    	  Optional<Utilisateur> utilisateurOpt = utilisateurRepository.findByLogin(login);
+    	  //System.out.println("Utilisateur :" + utilisateurOpt.get().getNom() + "" + utilisateurOpt.get().getRole().getLibelle() );
+    	 
+          if (utilisateurOpt.isEmpty() || !passwordEncoder.matches(password, utilisateurOpt.get().getPassword())) {
               throw new IllegalArgumentException("Identifiants incorrects");
           }
 
-        String token = jwtUtil.generateToken(login);
-        return Map.of("token", token);
+          
+        
+        String token = JwtUtil.generateToken(
+        		utilisateurOpt.get().getLogin(),
+        		utilisateurOpt.get().getNom(),
+        		utilisateurOpt.get().getPrenoms(),
+        		utilisateurOpt.get().getRole().getLibelle()
+        );
+        return Map.of(
+        		
+        		"token", token,
+        		"login", utilisateurOpt.get().getLogin(),
+                "nom", utilisateurOpt.get().getNom(),
+                "prenoms", utilisateurOpt.get().getPrenoms(),
+                "role", utilisateurOpt.get().getRole().getLibelle()
+        		
+        		
+        		);
         
     }
 }

@@ -27,7 +27,7 @@ public class Utilisateur {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "utilisateur_role",
         joinColumns = @JoinColumn(name = "id_utilisateur"),
@@ -38,7 +38,9 @@ public class Utilisateur {
     public void setLogin(String login) {
         this.login = login.trim().toLowerCase(); // Ex: Nettoyage du login
     }
-
+    public String getLogin() {
+		return login;
+	}
     public void setPassword(String password) {
         this.password = password; 
        
@@ -56,7 +58,9 @@ public class Utilisateur {
         }
         this.roles.add(role);
     }
-
+    
+    
+    
 	public String getNom() {
 		return nom;
 	}
@@ -72,5 +76,13 @@ public class Utilisateur {
 	public void setPrenoms(String prenoms) {
 		this.prenoms = prenoms;
 	}
+	
+	public Role getRole() {
+	    if (roles != null && !roles.isEmpty()) {
+	        return roles.iterator().next(); // Récupère le premier rôle
+	    }
+	    return null; // Ou gérer une exception si nécessaire
+	}
+
 
 }

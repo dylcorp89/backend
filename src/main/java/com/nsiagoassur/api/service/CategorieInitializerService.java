@@ -17,7 +17,7 @@ public class CategorieInitializerService {
 
     @PostConstruct
     public void initCategories() {
-    	System.out.println("Initialisation des catégories...");
+    	
         Map<String, String[]> defaultCategories = Map.of(
             "201", new String[]{"Promenade et Affaire", "Usage personnel"},
             "202", new String[]{"Véhicules Motorisés à 2 ou 3 roues", "Motocycle, tricycles"},
@@ -25,11 +25,7 @@ public class CategorieInitializerService {
             "204", new String[]{"Véhicule de transport avec taximètres", "Taxis"}
         );
         
-      /*  List<Categorie> existingCategories = categorieRepository.findAll();
-        System.out.println("Catégories existantes en base : ");
-        existingCategories.forEach(cat -> 
-            System.out.println(cat.getCodeCategorie() + " - " + cat.getLibelleCategorie())
-        );*/
+ 
 
       List<Categorie> categoriesToSave = defaultCategories.entrySet().stream().filter(entry -> categorieRepository.findByCodeCategorie(entry.getKey()).isEmpty())
             .map(entry -> {
@@ -43,7 +39,7 @@ public class CategorieInitializerService {
 
         if (!categoriesToSave.isEmpty()) {
             categorieRepository.saveAll(categoriesToSave);
-            System.out.println(categoriesToSave.size() + " catégories ajoutées !");
+           
         }
         
         
