@@ -1,6 +1,7 @@
 package com.nsiagoassur.api.controller;
 
 
+import com.nsiagoassur.api.dto.UtilisateurDTO;
 import com.nsiagoassur.api.model.Utilisateur;
 import com.nsiagoassur.api.service.AuthService;
 
@@ -59,7 +60,7 @@ public class AuthController {
     @GetMapping("/liste")
     @Operation(summary = "Liste des utilisateurs", description = "Récupère la liste des utilisateurs")
     @ApiResponse(responseCode = "200", description = "Liste des utilisateurs récupérée avec succès")
-    public List<Utilisateur> getUsersList() {
+    public List<UtilisateurDTO> getUsersList() {
         return  authService.findAll();
     }
 }

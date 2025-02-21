@@ -1,5 +1,6 @@
 package com.nsiagoassur.api.service;
 
+import com.nsiagoassur.api.dto.UtilisateurDTO;
 import com.nsiagoassur.api.model.Role;
 import com.nsiagoassur.api.model.Utilisateur;
 import com.nsiagoassur.api.repository.RoleRepository;
@@ -93,8 +94,12 @@ public class AuthService  {
     }
 
 
-    public List<Utilisateur> findAll() {
-        return utilisateurRepository.findAll();
+    public List<UtilisateurDTO> findAll() {
+        List<Utilisateur> utilisateurs = utilisateurRepository.findAll();
+        // Mapper les utilisateurs vers des DTOs
+        return utilisateurs.stream()
+                .map(u -> new UtilisateurDTO(u.getIdUtilisateur(), u.getLogin(), u.getNom(), u.getPrenoms() ,u.getRole().getLibelle()))
+                .collect(Collectors.toList());
     }
 
 }

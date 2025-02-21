@@ -132,6 +132,7 @@ public class SimulationService {
         
         simulation.setPrice(resultatPrime);
         simulation.setQuoteReference(reference.generateReference());
+        
         simulation.setStatus("Active");
         simulation.setEndDate(date_fin);
         simulation.setStartDate(date_debut);

@@ -58,7 +58,7 @@ public class SubscriptionService {
 
 public Subscription createSubscription(Map<String, String> request) {
 
-    logger.info("Requête reçue pour la création d'une souscription : " + request);
+   
 
     ReferenceGenerator reference = new ReferenceGenerator("ATT-");
 
@@ -83,8 +83,8 @@ public Subscription createSubscription(Map<String, String> request) {
     // Valeurs par défaut si null ou conversion sécurisée
     int porteVehiculeInt = parseIntOrDefault(request.get("nbrePorte"), 1);
     int siegeVehiculeInt = parseIntOrDefault(request.get("nbreSiege"), 1);
-    float valeurVenaleVehiculeFloat = parseFloatOrDefault(request.get("valeurVenaleVehicule"), 0.0f);
-    float valeurNeufVehiculeFloat = parseFloatOrDefault(request.get("valeurNeufVehicule"), 0.0f);
+    float valeurVenaleVehiculeFloat = parseFloatOrDefault(request.get("valeurVenal"), 0.0f);
+    float valeurNeufVehiculeFloat = parseFloatOrDefault(request.get("valeurNeuf"), 0.0f);
     float priceFloat = parseFloatOrDefault(request.get("prime"), 0.0f);
 
     String status = "Active";
@@ -115,6 +115,7 @@ public Subscription createSubscription(Map<String, String> request) {
         newVehicule.setNbrPortes(porteVehiculeInt);
         newVehicule.setNbrSieges(siegeVehiculeInt);
         newVehicule.setNumeroMatricule(immatVehicule);
+        
         newVehicule.setValeurNeuf(valeurNeufVehiculeFloat);
         newVehicule.setValeurVenale(valeurVenaleVehiculeFloat);
         newVehicule.setCategorie(categorie);
