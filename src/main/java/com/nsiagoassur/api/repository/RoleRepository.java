@@ -9,5 +9,6 @@ import com.nsiagoassur.api.model.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
+	
     Optional<Role> findByLibelle(String libelle);
 }

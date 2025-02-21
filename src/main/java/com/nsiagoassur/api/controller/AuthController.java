@@ -1,18 +1,14 @@
 package com.nsiagoassur.api.controller;
 
 
-
-import lombok.RequiredArgsConstructor;
-
-
-
 import com.nsiagoassur.api.service.AuthService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
@@ -23,13 +19,13 @@ import java.util.Map;
 @RequestMapping("/auth")
 @Tag(name = "Authentification", description = "Endpoints pour l'authentification des utilisateurs")
 
-@RequiredArgsConstructor
 public class AuthController {
 	
+	  
 	 private final AuthService authService;
-
+	 private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 	   
-
+	  
 	    public AuthController(AuthService authService) {
 	     
 	        this.authService = authService;
@@ -38,10 +34,13 @@ public class AuthController {
     @PostMapping("/register")
     @Operation(summary = "Inscription d'un utilisateur", description = "Permet de créer un compte utilisateur")
     @ApiResponse(responseCode = "200", description = "Utilisateur inscrit avec succès")
-    public void register(@RequestBody Map<String, String> request) {
+   
+    public ResponseEntity<Map<String, String>> register(@RequestBody Map<String, String> request) {
         String token = authService.register(request.get("username"), request.get("password"), request.get("role")
         		, request.get("nom"), request.get("prenoms")
         		);
+        
+        return ResponseEntity.ok(Map.of("token", token));
      
     }
 

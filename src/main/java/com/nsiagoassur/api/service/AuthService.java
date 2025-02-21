@@ -20,30 +20,21 @@ import java.util.Map;
 
 @Service
 
-@RequiredArgsConstructor
-
 public class AuthService  {
     
-	 
+	
 	    private final UtilisateurRepository utilisateurRepository ;
-	  
-
 	    private final RoleRepository roleRepository ;
-	  
-		   
 	    private final JwtUtil jwtUtil;
-	 
 	    private final PasswordEncoder passwordEncoder;
 
+	  
 	    public AuthService(JwtUtil jwtUtil,
 	    		PasswordEncoder passwordEncoder,UtilisateurRepository utilisateurRepository,RoleRepository roleRepository) {
 	        this.jwtUtil = jwtUtil;
-	      
 	        this.passwordEncoder = passwordEncoder;
-	        
 	        this.utilisateurRepository = utilisateurRepository;
 	        this.roleRepository = roleRepository;
-	      
 	    }
 	    
 	
@@ -66,7 +57,7 @@ public class AuthService  {
         utilisateur.setRole(defaultRole);;
         utilisateurRepository.save(utilisateur);
 
-        return "ok";
+       return jwtUtil.generateToken(login);
     }
 
     public Map<String, String> login(String login, String password) {

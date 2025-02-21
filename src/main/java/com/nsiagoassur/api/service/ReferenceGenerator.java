@@ -10,6 +10,7 @@ public class ReferenceGenerator {
     private final String prefix; // Préfixe fourni par l'utilisateur
 
     // Constructeur qui prend le préfixe en paramètre
+    
     public ReferenceGenerator(String prefix) {
         if (prefix == null || prefix.isEmpty()) {
             throw new IllegalArgumentException("Le préfixe ne peut pas être null ou vide.");

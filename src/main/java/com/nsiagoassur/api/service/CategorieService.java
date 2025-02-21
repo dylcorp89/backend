@@ -14,7 +14,7 @@ import com.nsiagoassur.api.repository.CategorieRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
+
 public class CategorieService {
 	  
 	@Autowired

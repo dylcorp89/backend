@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -28,14 +30,14 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/simulations")
-@RequiredArgsConstructor
+
 @Tag(name = "Simulation", description = "Endpoints pour la simulation d'un produit")
 public class SimulationController {
 
-
+	private static final Logger logger = LoggerFactory.getLogger(SimulationController.class);
     private final SimulationService simulationService ;
 	
-	    
+    @Autowired
     public SimulationController(SimulationService simulationService) {
         this.simulationService = simulationService;
     }

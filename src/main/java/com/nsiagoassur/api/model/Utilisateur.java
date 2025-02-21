@@ -9,8 +9,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Table(name = "utilisateurs")
 public class Utilisateur {
 
@@ -42,13 +41,10 @@ public class Utilisateur {
 
     public void setPassword(String password) {
         this.password = password; 
-        //this.password = encodePassword(password); // Ex: Encodage du mot de passe
+       
     }
 
-    private String encodePassword(String rawPassword) {
-        // Implémentez votre logique d'encodage (ex: BCrypt)
-        return rawPassword; // À remplacer par un encodeur
-    }
+
 
     public String getPassword() {
         return this.password; //  risqué

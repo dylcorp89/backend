@@ -1,11 +1,13 @@
 package com.nsiagoassur.api.security;
 
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +18,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 
 @Configuration
+@EnableWebSecurity
+@ConditionalOnMissingBean(SecurityFilterChain.class)
+
 public class SecurityConfig {
 	
     private final JwtUtil jwtUtil;
@@ -33,7 +38,7 @@ public class SecurityConfig {
          FilterRegistrationBean<JwtFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(jwtFilter);
          registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE); // ou un autre ordre souhaité
-         registrationBean.addUrlPatterns("/api/v1/**","/auth/register" ); // ou spécifiez les URL à filtrer
+         registrationBean.addUrlPatterns("/api/v1/**"); // ou spécifiez les URL à filtrer
          return registrationBean;
      }
     
@@ -44,12 +49,13 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
            
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html","/auth/login*").permitAll()
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html","/auth/login*","/actuator/**").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
+        
     }
 
     @Bean

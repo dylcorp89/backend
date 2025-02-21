@@ -1,17 +1,5 @@
 package com.nsiagoassur.api.service ;
 
-import com.nsiagoassur.api.model.Assure;
-import com.nsiagoassur.api.model.Categorie;
-import com.nsiagoassur.api.model.ProduitAssurance;
-import com.nsiagoassur.api.model.Simulation;
-import com.nsiagoassur.api.model.Subscription;
-import com.nsiagoassur.api.model.Vehicule;
-import com.nsiagoassur.api.repository.AssureRepository;
-import com.nsiagoassur.api.repository.CategorieRepository;
-import com.nsiagoassur.api.repository.ProduitAssuranceRepository;
-import com.nsiagoassur.api.repository.SimulationRepository;
-import com.nsiagoassur.api.repository.SubscriptionRepository;
-import com.nsiagoassur.api.repository.VehiculeRepository;
 
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +7,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import com.nsiagoassur.api.model.Assure;
+import com.nsiagoassur.api.model.Categorie;
+import com.nsiagoassur.api.model.ProduitAssurance;
+import com.nsiagoassur.api.model.Subscription;
+import com.nsiagoassur.api.model.Vehicule;
+import com.nsiagoassur.api.repository.AssureRepository;
+import com.nsiagoassur.api.repository.CategorieRepository;
+import com.nsiagoassur.api.repository.ProduitAssuranceRepository;
+import com.nsiagoassur.api.repository.SubscriptionRepository;
+import com.nsiagoassur.api.repository.VehiculeRepository;
 
 import java.security.SecureRandom;
 import java.text.ParseException;
@@ -31,12 +30,13 @@ import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
-@RequiredArgsConstructor
 
 public class SubscriptionService {
 
+
 	@Autowired
-    private SubscriptionRepository subscriptionRepository;
+	
+    private  SubscriptionRepository subscriptionRepository;
     
 	@Autowired
 	private AssureRepository assureRepository;
@@ -46,10 +46,10 @@ public class SubscriptionService {
 	
 	
 	@Autowired
-	private CategorieRepository categorieRepository;
+	private  CategorieRepository categorieRepository;
 	
 	@Autowired
-	private ProduitAssuranceRepository produitAssuranceRepository;
+	private  ProduitAssuranceRepository produitAssuranceRepository;
 	
 
 	   private static final Logger logger = Logger.getLogger(SubscriptionService.class.getName());

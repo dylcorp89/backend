@@ -21,16 +21,13 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+
 public class SimulationService {
 
 	 @Autowired
 	private SimulationRepository simulationRepository;
 	 
 	
-  
-
-
     public List<Simulation> getAllSimulations() {
         return simulationRepository.findAll();
     }

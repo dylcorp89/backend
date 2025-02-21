@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -32,17 +34,16 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1/subscriptions")
-
-@RequiredArgsConstructor
 @Tag(name = "Souscription", description = "Endpoints pour la souscription")
 public class SubscriptionController {
 
-	@Autowired
+	private static final Logger logger = LoggerFactory.getLogger(SubscriptionController.class);
     private final  SubscriptionService subscriptionService ;
 	
-	@Autowired
+	
     private final  AttestationService attestationService;
 	
+	@Autowired
 	 public SubscriptionController(SubscriptionService subscriptionService,AttestationService attestationService) {
 	        this.subscriptionService = subscriptionService;
 	        this.attestationService = attestationService;
