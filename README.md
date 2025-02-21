@@ -51,11 +51,47 @@
 
 ## 🔑 Authentification JWT
 - **Login** : `POST /auth/login`  
+
+ ```sh
+ 
+ ROLE ADMIN
+   {
+   "username" :"admin",
+   "password" :"chance@@@@##4599_"
+   }
+
+ROLE AMAZONE
+   {
+   "username" :"user",
+    "password" :"user123"
+     }
+   ```
+
 - **Register** : `POST /auth/register`  
+
+ ```sh
+ 
+ {
+"username" :"test",
+"password" :"test4458",
+"role" : "Amazone",
+"nom" : "JOHN",
+"prenoms" : "DOE"
+
+}
+   ```
+
 - **Accès sécurisé** : Ajouter `Authorization: Bearer <token>` dans les requêtes.
 
 ## 🛠️ Choix techniques
 - **Spring Boot** : Pour sa robustesse et son écosystème mature.  
 - **JWT** : Solution simple et efficace pour l'authentification.  
 - **Rate Limiting** : Protection contre les abus et les attaques DDoS.  
+
+## 🛠️ Documentation API
+
+- **Endpoint** : /swagger-ui/index.html  
+
+ 
+
 
