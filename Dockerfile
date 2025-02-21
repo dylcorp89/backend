@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/api-*.jar nsiaassur.jar
 
 # Étape 4 : Exposer le port sur lequel l’application écoute
-EXPOSE 8080
+EXPOSE 8081
 
 # Étape 5 : Démarrer l’application
 ENTRYPOINT ["java", "-jar", "nsiaassur.jar"]
