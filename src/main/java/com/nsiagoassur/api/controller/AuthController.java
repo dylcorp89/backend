@@ -38,11 +38,11 @@ public class AuthController {
     @PostMapping("/register")
     @Operation(summary = "Inscription d'un utilisateur", description = "Permet de créer un compte utilisateur")
     @ApiResponse(responseCode = "200", description = "Utilisateur inscrit avec succès")
-    public ResponseEntity<Map<String, String>> register(@RequestBody Map<String, String> request) {
+    public void register(@RequestBody Map<String, String> request) {
         String token = authService.register(request.get("username"), request.get("password"), request.get("role")
         		, request.get("nom"), request.get("prenoms")
         		);
-        return ResponseEntity.ok(Map.of("token", token));
+     
     }
 
     @PostMapping("/login")

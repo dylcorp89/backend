@@ -1,5 +1,6 @@
 package com.nsiagoassur.api.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 
 import org.springframework.core.Ordered;
@@ -31,7 +32,7 @@ public class JwtFilter extends OncePerRequestFilter implements Ordered {
 
         if (token != null && token.startsWith("Bearer ")) {
             try {
-                String username = jwtUtil.validateToken(token.substring(7));
+                Claims username = jwtUtil.validateToken(token.substring(7));
                 SecurityContextHolder.getContext().setAuthentication(
                     new UsernamePasswordAuthenticationToken(username, null, new ArrayList<>())
                 );

@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -32,7 +33,7 @@ public class SecurityConfig {
          FilterRegistrationBean<JwtFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(jwtFilter);
          registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE); // ou un autre ordre souhaité
-         registrationBean.addUrlPatterns("/api/v1/**"); // ou spécifiez les URL à filtrer
+         registrationBean.addUrlPatterns("/api/v1/**","/auth/register" ); // ou spécifiez les URL à filtrer
          return registrationBean;
      }
     
@@ -43,7 +44,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
            
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/v1/**","/swagger-ui/**","/swagger-ui/**","/auth/*").permitAll()
+                .requestMatchers("/swagger-ui/**","/swagger-ui/**","/auth/login*").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -54,15 +55,16 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new PasswordEncoder() {
+            private final BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+
             @Override
             public String encode(CharSequence rawPassword) {
-                // Utilisation d'une méthode de hachage sécurisée recommandée
-                return rawPassword.toString(); // ⚠️ Ceci n'est pas sécurisé ! Utilisez BCrypt à la place.
+                return bcrypt.encode(rawPassword); // ✅ Utilisation de BCrypt
             }
 
             @Override
             public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                return rawPassword.toString().equals(encodedPassword);
+                return bcrypt.matches(rawPassword, encodedPassword); // ✅ Vérification avec BCrypt
             }
         };
     }

@@ -34,7 +34,6 @@
 ✔️ Gestion des rôles et permissions  
 ✔️ Système de rate limiting  
 ✔️ Simulation de prime 
-
 ✔️ Souscription à un produit d'assurance  
 ✔️ Établissement d'attestation  
 
