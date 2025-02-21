@@ -16,15 +16,27 @@
 
 2. **Configurer la base de données**  
    Modifier `application.properties` :
-   ```properties
+   ```
+   
    spring.datasource.url=jdbc:mysql://localhost:3306/ma_base
+   
    spring.datasource.username=root
+   
    spring.datasource.password=secret
+   
    server.port=8081
    ```
-
+   
+3. **Creer votre base de données**  
+   ```sh
+   mysql -u root -p (Entre ton mot de passe MySQL lorsque demandé)
+   
+   CREATE DATABASE ma_base;
+   ```
+   
 3. **Lancer l'application**  
    ```sh
+   
    mvn spring-boot:run
    ```
 
